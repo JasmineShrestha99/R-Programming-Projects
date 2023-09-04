@@ -1,0 +1,157 @@
+---
+title: "H#9"
+author: "Jasmine Shrestha"
+date: "2023-07-19"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("/Users/student/Downloads")
+```
+
+## (a) Reading the raw data into R
+
+```{r}
+ccr_data <- read.csv("Customer-Churn-Records.csv")
+ccr_data
+```
+
+## Creating summary table for CreditScore and Geography  
+```{r}
+credscore <- aggregate(ccr_data$CreditScore, list(ccr_data$Geography), FUN=mean)
+credscore
+```
+
+## Creating barplot for CreditScore summary table
+```{r}
+barplot(credscore$x, names = credscore$Group.1, main = "Average credit score of customers in each geographical region")
+```
+
+
+## Creating summary table for Age and Geography  
+```{r}
+age <- aggregate(ccr_data$Age, list(ccr_data$Geography), FUN=mean)
+age
+```
+
+## Creating barplot for Age summary table
+```{r}
+barplot(age$x, names = age$Group.1, main = "Average age of customers in each geographical region")
+```
+
+## Creating summary table for Tenure and Geography  
+```{r}
+tenure <- aggregate(ccr_data$Tenure, list(ccr_data$Geography), FUN=mean)
+tenure
+```
+
+## Creating barplot for Tenure summary table
+```{r}
+barplot(tenure$x, names = tenure$Group.1, main = "Average tenure of customers in each geographical region")
+```
+
+## Creating summary table for Balance and Geography  
+```{r}
+bal <- aggregate(ccr_data$Balance, list(ccr_data$Geography), FUN=mean)
+bal
+```
+
+## Creating barplot for Balance summary table
+```{r}
+barplot(bal$x, names = bal$Group.1, main = "Average balance of customers in each geographical region")
+```
+
+## Creating summary table for Number of Products and Geography  
+```{r}
+products <- aggregate(ccr_data$NumOfProducts, list(ccr_data$Geography), FUN=mean)
+products
+```
+
+## Creating barplot for Products summary table
+```{r}
+barplot(products$x, names = products$Group.1, main = "Average products of customers in each geographical region")
+```
+
+## Creating summary table for HasCrCard and Geography  
+```{r}
+crcard <- aggregate(ccr_data$HasCrCard, list(ccr_data$Geography), FUN=mean)
+crcard
+```
+
+## Creating barplot for CreditScore summary table
+```{r}
+barplot(crcard$x, names = crcard$Group.1, main = "Average percentage of customers having credit card in each geographical region")
+```
+
+## Creating summary table for IsActiveMember and Geography  
+```{r}
+active <- aggregate(ccr_data$IsActiveMember, list(ccr_data$Geography), FUN=mean)
+active
+```
+
+## Creating barplot for IsActiveMember summary table
+```{r}
+barplot(active$x, names = active$Group.1, main = "Average percentage of active customers in each geographical region")
+```
+
+## Creating summary table for EstimatedSalary and Geography  
+```{r}
+salary <- aggregate(ccr_data$EstimatedSalary, list(ccr_data$Geography), FUN=mean)
+salary
+```
+
+## Creating barplot for Estimated Salary summary table
+```{r}
+barplot(salary$x, names = salary$Group.1, main = "Average estimated salary of customers in each geographical region")
+```
+
+## Creating summary table for Exited and Geography  
+```{r}
+exit <- aggregate(ccr_data$Exited, list(ccr_data$Geography), FUN=mean)
+exit
+```
+
+## Creating barplot for exited summary table
+```{r}
+barplot(exit$x, names = exit$Group.1, main = "Average percentage of customers exitting in each geographical region")
+```
+
+## Creating summary table for Complain and Geography  
+```{r}
+complains <- aggregate(ccr_data$Complain, list(ccr_data$Geography), FUN=mean)
+complains
+```
+
+## Creating barplot for complain summary table
+```{r}
+barplot(complains$x, names = complains$Group.1, main = "Average percentage of customers complaining in each geographical region")
+```
+
+## Creating summary table for Satisfaction.Score and Geography  
+```{r}
+satisfaction <- aggregate(ccr_data$Satisfaction.Score, list(ccr_data$Geography), FUN=mean)
+satisfaction
+```
+
+## Creating barplot for Satisfaction.Score summary table
+```{r}
+barplot(satisfaction$x, names = satisfaction$Group.1, main = "Average satisfaction score of customers in each geographical region")
+```
+
+## Creating summary table for Point.Earned and Geography  
+```{r}
+point <- aggregate(ccr_data$Point.Earned, list(ccr_data$Geography), FUN=mean)
+point
+```
+
+## Creating barplot for Point Earned summary table
+```{r}
+barplot(point$x, names = point$Group.1, main = "Average points of customers in each geographical region")
+```
+
+
+
