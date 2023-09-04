@@ -1,0 +1,54 @@
+---
+title: "H#5"
+author: "Jasmine Shrestha"
+date: "2023-06-14"
+output: word_document
+---
+
+## Reading Data
+```{r}
+dataset <- read.csv("graduation_rate.csv")
+dataset
+```
+## (1) Rename the columns by removing spaces:
+
+```{r}
+data_new1 <- dataset
+colnames(data_new1) <- gsub(" ",".", colnames(data_new1))
+data_new1
+```
+## Rank the students by college GPA from highest to lowest:
+
+```{r}
+newdata <- dataset[order(dataset$college.gpa), ]
+newdata
+```
+```{r}
+library(ggplot2)
+qplot(x = high.school.gpa, y = college.gpa, data = dataset)
+
+```
+
+## Create a bar plot for the the parental level of education:
+
+```{r}
+graph <- (dataset$parental.level.of.education)
+plott <- barplot(table(graph))
+
+```
+
+## Find the mean of each numeric variable for each group determined by the parental level of education.
+
+```{r}
+library(dplyr)
+  dataset %>%
+    group_by(parental.level.of.education) %>% 
+    summarise_at(vars("ACT.composite.score", "SAT.total.score", "parental.income", "high.school.gpa", "college.gpa", "years.to.graduate") ,sd)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
