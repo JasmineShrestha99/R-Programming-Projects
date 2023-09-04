@@ -1,0 +1,149 @@
+---
+title: "H#6"
+author: "Jasmine Shrestha"
+date: "2023-07-01"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading file
+
+```{r}
+dataset <- read.csv("Customer-Churn-Records.csv")
+dataset
+```
+## 1. Creating a Scatter Plot for Credit Score and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = CreditScore, y = Exited, data = dataset)
+```
+
+### The scatter plot above suggests that the customers with credit scores less than 400 have exited the bank than staying. 
+
+
+## 2. Creating a Scatter Plot for Geography and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = Geography, y = Exited, data = dataset)
+```
+
+### The scatter plot above suggests that in each country i.e. France, Germany and Spain, the number of customers exitting the bank is equal to the number of customers staying as a member of the bank. 
+
+## 3. Creating a Scatter Plot for Gender and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = Gender, y = Exited, data = dataset)
+```
+
+### The scatter plot above suggests that there are equal number of male customers exitting the bank and staying as a member of the bank. Likewise, there are equal number of female customers exitting the bank and staying as a member of the bank. 
+
+## 4. Creating a Scatter Plot for Age and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = Age, y = Exited, data = dataset)
+```
+
+### The scatter plot above suggests that the customers above the age of 80 tend to stay as a member of the bank rather than exitting the bank.
+
+## 5. Creating a Scatter Plot for Tenure and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = Tenure, y = Exited, data = dataset)
+```
+
+### The above scatter plot suggests that customers with varying tenure years have exitted the bank and are staying as a member of the bank. 
+
+## 6. Creating a Scatter Plot for Balance and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = Balance, y = Exited, data = dataset)
+```
+
+### The above scatter plot suggests that the highest balance of the customers exitting the bank is 250,000 and the highest balance of the customers staying as a member of the bank is around 220,000.
+
+## 7. Creating a Scatter Plot for NumOfProducts and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = NumOfProducts, y = Exited, data = dataset)
+```
+
+### The above scatter plot suggests that the highest number of products of customers exitting the bank is 4 and the highest number of products of customers staying as a member of the bank is 3.
+
+## 8. Creating a Scatter Plot for EstimatedSalary and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = EstimatedSalary, y = Exited, data = dataset)
+```
+
+### The above scatter plot suggests that the highest estimated salary of the customers exitting the bank and staying as a member of the bank is 200,000.
+
+## 9. Creating a Scatter Plot for Card Type and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = Card.Type, y = Exited, data = dataset)
+```
+
+### The above scatter plot suggests that the customers exitting the bank as well as staying as a member of the bank have all sorts of card types i.e. diamond, gold, platinum, silver. 
+
+## 10. Creating a Scatter Plot for Point Earned and Exited
+
+```{r}
+library(ggplot2)
+qplot(x = Point.Earned, y = Exited, data = dataset)
+```
+
+### The above scatter plots suggests that the highest point earned by both the customers exitting the bank and staying as a member of the bank is 1000. The lowest point earned by the the customers exitting the bank is around 125 and the lowest point earned by the the customers staying as a member of the bank is around 50.
+
+## 11. Creating bar plot for HasCrCard and Exited
+
+```{r}
+ggplot(dataset, aes(x = HasCrCard, y = Exited)) +
+    geom_col() +
+    geom_text(aes(label = HasCrCard, vjust = -10))
+```
+
+### The above bar plot suggests that the customers who have exitted the bank mostly have the Credit card.
+
+## 12. Creating bar plot for IsActiveMember and Exited
+
+```{r}
+ggplot(dataset, aes(x = IsActiveMember, y = Exited)) +
+    geom_col() +
+    geom_text(aes(label = IsActiveMember, vjust = -10))
+```
+
+### The above bar plot suggests that the customers who are not an active member of the bank has left the bank than those who are an active member of the bank. 
+
+## 13. Creating bar plot for Complain and Exited
+
+```{r}
+ggplot(dataset, aes(x = Complain, y = Exited)) +
+    geom_col() +
+    geom_text(aes(label = Complain, vjust = -10))
+```
+
+### The above bar plot suggests that the customers who have complained have mostly left the bank.
+
+## 14. Creating bar plot for Satisfaction Score and Exited
+
+```{r}
+ggplot(dataset, aes(x = Satisfaction.Score, y = Exited)) +
+    geom_col() +
+    geom_text(aes(label = Satisfaction.Score, vjust = -10))
+```
+
+### The above bar plot suggests that the customers who have exitted the bank has mostly the satisfaction score of 2. 
+
+
