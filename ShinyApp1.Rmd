@@ -1,0 +1,72 @@
+---
+title: "H#8"
+author: "Jasmine Shrestha"
+date: "2023-07-12"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("/Users/student/Downloads")
+```
+
+## (a) Reading the raw data into R
+
+```{r}
+wb_data <- read.csv("WorldBankData.csv")
+wb_data
+```
+
+## Use the gather() function to gather the year columns together. 
+
+```{r}
+library(tidyr)
+long_year_data = wb_data %>%
+gather(key = year,
+       value=value,
+       X1960:X)
+long_year_data
+```
+
+## Creating Shiny App
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Relationship between Literacy Rate and Unemployment Rate"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("year", "Select a Year:", choices = unique(long_year_data$year))
+    ),
+    mainPanel(
+      plotOutput("scatterPlot")
+    )
+  )
+)
+
+server <- function(input, output) {
+output$scatterPlot <- renderPlot({
+    filtered_data <- long_year_data %>%
+      filter(year == input$year)
+
+    ggplot(filtered_data, aes(x = "Literacy rate", y = "Unemployment")) +
+      geom_point() +
+      labs(x = "Literacy rate, adult total (% of people ages 15 and above)", y = "Unemployment, total (% of total labor force) (modeled ILO estimate)") +
+      ggtitle(paste("Relationship between Literacy Rate and Unemployment Rate -", input$year))
+  })
+}
+```
+
+
+
+```{r}
+shinyApp(ui = ui, server = server)
+```
+
+
