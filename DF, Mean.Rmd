@@ -1,0 +1,38 @@
+---
+title: "Introduction to R Markdown"
+author: "Jasmine Shrestha"
+date: "2023-06-04"
+output: word_document
+---
+
+Section One:
+
+Under section one, create a data frame, named DF, consisting of columns "Student", "Quiz1", and "Quiz2". The data frame should have 10 rows filled with entries you decide. Report the mean score of each quiz. Hint: use the apply() function. To check the documentation for apply(), type ?apply in the console and hit "enter".
+
+
+```{r}
+Student_names <- c("Basan Shrestha", "Sarita Shrestha", "Sajjan Shrestha", "Karma Gurung", "Soyal Dahal", "Smriti Shrestha", "Stuti Shrestha", "Anisha Pathak", "Kalpana Shrestha", "Dinesh Shrestha" )
+Quiz1 <- c (8,6,9,10,7,8,5,8,9,6)
+Quiz2 <- c (9,6,8,7,5,7,6,10,4,8)
+
+Student <- data.frame(Student = Student_names,
+                      Quiz1 = Quiz1,
+                      Quiz2 = Quiz2)
+      
+Student
+
+Student_col_means = apply(Student[ , c(2:3)], 2, mean)
+Student_col_means
+```
+Section Two:
+
+Under section two, create a function that prints the first n consecutive terms of the sequence determined by f(x) = x^2-3x+20, x = 1, 2, .... Test your function with some values of n. For example, when n = 1, the function should print 18; when n = 2, the function should print 19 and 18.
+
+```{r}
+formula <- numeric(10)
+for (x in 1:10) {
+  formula[x] <- x^2-3*x+20 
+} 
+formula
+```
+
