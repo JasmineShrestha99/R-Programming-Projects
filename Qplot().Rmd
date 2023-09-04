@@ -1,0 +1,67 @@
+---
+title: "Lists, Data Frames and Basic Plots"
+author: "Jasmine Shrestha"
+date: "2023-06-05"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Section One
+
+### To create a List
+
+```{r}
+Create_list <- list(mtcars,iris,USArrests)
+Create_list
+```
+
+### To create a named list
+
+```{r}
+Named_list <- list(df1 = mtcars, df2 = iris, df3 = USArrests)
+Named_list
+```
+
+### To access Species column in df2
+
+```{r}
+access_species <- Named_list[[2]][,5]
+access_species
+```
+```{r}
+```{r}
+access_species <- Named_list$df2[,5]
+access_species
+```
+```{r}
+paste(iris$Species)
+```
+
+
+## Section Two
+
+qplot: qplot is intended to be similar to base r plot() function, trying to always plot out your data without requiring too
+much specifications.
+
+### To create a scatter plot of Sepal.Length vs Sepal.Width based on the iris data frame
+
+```{r}
+library(ggplot2)
+qplot(x = Sepal.Width, y = Sepal.Length, data = iris)
+```
+
+### To create a scatter plot of Sepal.Length vs Sepal.Width, coloring the points by the Species
+```{r}
+qplot(x = Sepal.Width, y = Sepal.Length, col = Species, data = iris)
+```
+
+### To create a scatter plot of disp vs mpg, coloring the points by am. The variables are from the mtcars data frame. 
+```{r}
+mtcars_data <- mtcars
+mtcars_data$am <- as.factor(mtcars_data$am)
+qplot (x = disp, y = mpg, col = am, data = mtcars_data)
+```
+
