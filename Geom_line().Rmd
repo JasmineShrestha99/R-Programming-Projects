@@ -1,0 +1,100 @@
+---
+title: "H#7"
+author: "Jasmine Shrestha"
+date: "2023-07-01"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("/Users/student/Downloads")
+```
+
+## (a) Reading the raw data into R
+
+```{r}
+wb_data <- read.csv("WorldBankData.csv")
+wb_data
+```
+## (b) Filtering the rows for the indicator of "Government expenditure on education, total (% of GDP)
+
+```{r}
+library(dplyr)
+library(tidyr)
+wb_data1 = filter(wb_data, Indicator.Name == 'Government expenditure on education, total (% of GDP)')
+wb_data1
+```
+
+
+## (b) To visually compare expenditures for 1990 and 2014
+
+```{r}
+library(ggplot2)
+ggplot(wb_data1, aes(x = Country.Name, y = X1990, fill = X2014, las = 2)) +
+    geom_col() 
+```
+
+## (c) Next, we visually compare how the expenditure across all years varies for a given country. Use the gather() function to gather the year columns together.
+
+```{r}
+library(tidyr)
+long_year_data = wb_data1 %>%
+gather(key = year,
+       value=value,
+       X1960:X)
+long_year_data
+```
+
+## (c) Display the first 20 rows of the new data frame. 
+
+```{r}
+head(long_year_data, 20)
+```
+
+## (c) Visualize government expenditure on education, total (% of GDP), for China and USA. You should two lines on the same graph. 
+
+```{r}
+library(ggplot2)
+
+long_year_data$year <- as.numeric(substr(long_year_data$year, 2, nchar(long_year_data$year)))
+
+wb_dataf <- long_year_data %>% filter(Indicator.Name == 'Government expenditure on education, total (% of GDP)') 
+
+filtered_data <- wb_dataf %>%
+  filter(Country.Name %in% c("China", "United States"))
+
+ggplot(filtered_data, aes(x = year, y = value, color = Country.Name)) +
+  geom_line() +
+  labs(x = "Year", y = "Government Expenditure on Education (% of GDP)") +
+  ggtitle("Government Expenditure on Education, Total (% of GDP) for China and USA")
+```
+
+## (d) You may want to assess the relationship between each country's literacy rate (a first indicator) and its unemployment rate (a second indicator). Do it for year 2014. Summarize your findings.
+
+```{r}
+library(tidyr)
+lit_unemp = wb_data %>%
+gather(key = year,
+       value=value,
+       X2014:X)
+lit_unemp
+```
+
+```{r}
+lit_unemp$year <- as.numeric(substr(lit_unemp$year, 2, nchar(lit_unemp$year)))
+
+# Filter the literacy and unemployment data for year 2014
+literacy_2014 <- subset(lit_unemp, year == 2014 & Indicator.Name == "Literacy rate, adult total (% of people ages 15 and above)")
+
+unemployment_2014 <- subset(lit_unemp, year == 2014 & Indicator.Name == "Unemployment, total (% of total labor force) (modeled ILO estimate)")
+
+# Plot the relationship between literacy rate and unemployment rate for year 2014
+plot(literacy_2014$value, unemployment_2014$value, xlab = "Literacy Rate", ylab = "Unemployment Rate", main = "Relationship between Literacy Rate and Unemployment Rate (2014)")
+
+```
+
+
+
