@@ -1,7 +1,6 @@
 ---
-title: "H#5"
+title: "Barplot"
 author: "Jasmine Shrestha"
-date: "2023-06-14"
 output: word_document
 ---
 
